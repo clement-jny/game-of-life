@@ -3,6 +3,8 @@ export const Layout = ({ children }) => {
 		<>
 			<div className={`left`}>{children}</div>
 			<div className={`right`}></div>
+
+			<p>Test</p>
 		</>
 	);
 };
