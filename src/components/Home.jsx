@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+// import { Link, Outlet } from "react-router-dom";
 
 import blinker_1 from "../assets/svg/blinker/blinker_1.svg";
 import blinker_2 from "../assets/svg/blinker/blinker_2.svg";
