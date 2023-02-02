@@ -61,7 +61,7 @@ body {
 		opacity: 0;
 	}
 }
-*/ .blinker {
+.blinker {
 	width: 100px;
 	height: 100px;
 	/* animation: blinker 2s linear infinite; */
