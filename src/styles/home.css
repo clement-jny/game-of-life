@@ -1,0 +1,41 @@
+.container--flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container__title {
+    
+    
+}
+
+.container__link {
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative;
+}
+
+.container__link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    background: url('../assets/svg/glider/glider_1.svg');
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all .7s ease;
+    width: 15px;
+    height: 15px;
+    transform: rotateY(180deg) rotate(45deg);
+}
+.container__link:hover::after {
+    opacity: 1;
+    transform: translate(-5px, 5px) rotateY(180deg) rotate(45deg);
+}

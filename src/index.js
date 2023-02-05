@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Signup } from "./components/Signup";
 import { App } from "./components/App";
+import { NotFound} from './components/NotFound';
 
 import "../src/styles/style.css";
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Home />,
+		errorElement: <NotFound />,
 	},
 	{
 		path: "/signup",
