@@ -56,7 +56,8 @@ export const Home = () => {
 			{/* <img src={gliders[gliderIndex]} alt={`glider`} />
 				<img src={blinkers[blinkerIndex]} alt={`blinker`} /> */}
 
-			<h1 className={`container__title`}>Game Of Life</h1>
+			{/* <h1 className={`container__title`}>Game Of Life</h1> */}
+			<h1 className={`text-3xl font-bold underline`}>Game Of Life</h1>
 			<Link to={`/signup`} className={`container__link`}>
 				Signup to play!
 			</Link>
