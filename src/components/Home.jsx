@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import '../styles/home.css';
+// import '../styles/home.css';
 
 // import blinker_1 from "../assets/svg/blinker/blinker_1.svg";
 // import blinker_2 from "../assets/svg/blinker/blinker_2.svg";
@@ -29,10 +29,10 @@ export const Home = () => {
 
 	return (
 		// <div className="home">
-        //     <div className="div--flex">
-        //         <div className="div--flex-item">
-        //             <h1 className="h1--home">Home</h1>
-        //         </div>
+		//     <div className="div--flex">
+		//         <div className="div--flex-item">
+		//             <h1 className="h1--home">Home</h1>
+		//         </div>
 		// 		<div className="div--flex-item">
 		// 			<Link className="link--home" to="/about">About</Link>
 		// 		</div>
@@ -51,17 +51,21 @@ export const Home = () => {
 		// 		</div>
 		// 	</div>
 		// </div>
-		
 
 		<div className={`container--flex`}>
-			
-				{/* <img src={gliders[gliderIndex]} alt={`glider`} />
+			{/* <img src={gliders[gliderIndex]} alt={`glider`} />
 				<img src={blinkers[blinkerIndex]} alt={`blinker`} /> */}
 
-				<h1 className={`container__title`}>Game Of Life</h1>
-				<Link to={`/signup`} className={`container__link`}>Signup to play!</Link>
-				<Link to={`/information`} className={`container__link`}>Information</Link>
-				<Link to={`/contact`} className={`container__link`}>Contact</Link>
+			<h1 className={`container__title`}>Game Of Life</h1>
+			<Link to={`/signup`} className={`container__link`}>
+				Signup to play!
+			</Link>
+			<Link to={`/information`} className={`container__link`}>
+				Information
+			</Link>
+			<Link to={`/contact`} className={`container__link`}>
+				Contact
+			</Link>
 		</div>
 	);
 };

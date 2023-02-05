@@ -6,8 +6,6 @@ import { Header } from "./Header";
 
 import { generateGrid } from "./Functions";
 
-import "../styles/style.css";
-
 export const App = () => {
 	const [grid, setGrid] = useState(generateGrid(20));
 	const [counter, setCounter] = useState(0);

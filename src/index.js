@@ -7,7 +7,7 @@ import { Signup } from "./components/Signup";
 import { App } from "./components/App";
 import { NotFound} from './components/NotFound';
 
-import "../src/styles/style.css";
+import "../src/index.css";
 
 const router = createBrowserRouter([
 	{
