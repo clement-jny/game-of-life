@@ -28,45 +28,17 @@ export const Home = () => {
 	// }, []);
 
 	return (
-		// <div className="home">
-		//     <div className="div--flex">
-		//         <div className="div--flex-item">
-		//             <h1 className="h1--home">Home</h1>
-		//         </div>
-		// 		<div className="div--flex-item">
-		// 			<Link className="link--home" to="/about">About</Link>
-		// 		</div>
-		// 		<div className="div--flex-item">
-		// 			<Link className="link--home" to="/projects">Projects</Link>
-		// 		</div>
-		// 		<div className="div--flex-item">
-		// 			<Link className="link--home" to="/blog">Blog</Link>
-		// 		</div>
-		// 		<div className="div--flex-item">
-		// 			<Link className="link--home" to="/contact">Contact</Link>
-		// 		</div>
-		// 		<div className="div--flex-item">
+		<div className={`h-screen flex flex-col justify-center items-center personal-bg-home`}>
 
-		// 			<Link className="link--home" to="/resume">Resume</Link>
-		// 		</div>
-		// 	</div>
-		// </div>
-
-		<div className={`container--flex`}>
 			{/* <img src={gliders[gliderIndex]} alt={`glider`} />
 				<img src={blinkers[blinkerIndex]} alt={`blinker`} /> */}
+			
+			<h1 className={`text-7xl mb-5`}>Game Of Life</h1>
 
-			{/* <h1 className={`container__title`}>Game Of Life</h1> */}
-			<h1 className={`text-3xl font-bold underline`}>Game Of Life</h1>
-			<Link to={`/signup`} className={`container__link`}>
-				Signup to play!
-			</Link>
-			<Link to={`/information`} className={`container__link`}>
-				Information
-			</Link>
-			<Link to={`/contact`} className={`container__link`}>
-				Contact
-			</Link>
+			<div className={`flex space-x-7`}>
+				<Link to={`/signup`} className={`btn btn-outline`}>Sign-up</Link>
+				<Link to={`/signin`} className={`btn btn-outline`}>Sign-in</Link>
+			</div>
 		</div>
 	);
 };
