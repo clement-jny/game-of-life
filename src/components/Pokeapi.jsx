@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Pokeapi = () => {
 	const [pokemons, setPokemons] = useState([]);
+	const [maxPokemons, setMaxPokemons] = useState(null);
 	const [search, setSearch] = useState("");
 
 	const [limit, setLimit] = useState(20);
@@ -13,7 +14,9 @@ export const Pokeapi = () => {
 
 	useEffect(() => {
 		setUrlToFetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${limit}`);
+	}, [limit]);
 
+	useEffect(() => {
 		fetch(urlToFetch)
 			.then((res) => {
 				if (res.ok) {
@@ -24,18 +27,19 @@ export const Pokeapi = () => {
 			})
 			.then((res) => {
 				setPokemons(res.results);
+				setMaxPokemons(res.count);
 				setPreviousUrl(res.previous);
 				setNextUrl(res.next);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	}, [limit, urlToFetch]);
+	}, [urlToFetch]);
 
 	return (
 		<div>
 			<Link to="/" className="btn">Accueil</Link>
-			<h1>Les pokémons</h1>
+			<h1>Les pokémons, {maxPokemons} au total!</h1>
 
 			<div className="form-control">
 				<label className="input-group input-group-vertical">
@@ -51,11 +55,10 @@ export const Pokeapi = () => {
 						<option defaultValue="20">20</option>
 						<option value="50">50</option>
 						<option value="100">100</option>
+						<option value={maxPokemons}>Tous - {maxPokemons}</option>
 					</select>
 				</label>
 			</div>
-
-			<p>Number of pokemon : {pokemons.length}</p>
 
 			<div className="btn-group">
 				<button className={`btn ${previousUrl ?? "btn-disabled"}`}
@@ -79,28 +82,32 @@ export const Pokeapi = () => {
 									<>
 										<div className="card card-bordered bg-slate-100" key={name}>
 											<figure className="px-10 pt-10">
-												<img src="" alt={name} className="rounded-xl" />
+												<img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${url.split('/')[6]}.png`} alt={name} className="rounded-xl" />
 											</figure>
 											<div className="card-body items-center text-center">
-												<h2 className="card-title">{name.charAt(0).toUpperCase() + name.slice(1)}</h2>
+												<h2 className="card-title">
+													{name.charAt(0).toUpperCase() + name.slice(1)}
+													<div className="badge badge-ghost"> {url.split('/')[6]} / {maxPokemons}</div>
+												</h2>
 												<div className="card-actions">
+													{/* The button to open modal */}
 													<label htmlFor={`modal-${name}`} className="btn">See more</label>
 												</div>
 											</div>
 										</div>
 
-
-										<input type="checkbox" htmlFor={`modal-${name}`} className="modal-toggle" />
+										{/* Put this part before </body> tag */}
+										<input type="checkbox" id={`modal-${name}`} className="modal-toggle" />
 										<label htmlFor={`modal-${name}`} className="modal cursor-pointer">
-											<label className="modal-box relative" htmlFor=""></label>
-											<h3 className="text-lg font-bold">Congratulations random Internet user!</h3>
-											<p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+											<label className="modal-box relative" htmlFor="">
+												<h3 className="text-lg font-bold">Pokemon : {name}</h3>
+											</label>
 										</label>
 									</>
 								))
 						}
 					</div>
-				) : (<p>Pas de pokémon</p>)
+				) : (<p>Pas de pokémon à afficher</p>)
 			}
 		</div>
 	);
