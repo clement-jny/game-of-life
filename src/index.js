@@ -6,8 +6,9 @@ import { Home } from "./components/Home";
 import { Signup } from "./components/Signup";
 import { Signin } from "./components/Signin";
 import { App } from "./components/App";
-import { NotFound} from './components/NotFound';
+import { NotFound } from "./components/NotFound";
 import { Labo } from "./components/Labo";
+import { Pokeapi } from "./components/Pokeapi";
 
 import "../src/index.css";
 
@@ -26,17 +27,19 @@ const router = createBrowserRouter([
 		element: <Signin />,
 	},
 	{
+		path: "/pokeapi",
+		element: <Pokeapi />,
+	},
+	{
 		path: "/app",
 		element: <App />,
 	},
 	{
 		path: "/labo",
-		element: <Labo />
-	}
+		element: <Labo />,
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<RouterProvider router={router} />
-	</React.StrictMode>
+	<RouterProvider router={router} />
 );

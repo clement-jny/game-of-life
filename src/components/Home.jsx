@@ -28,16 +28,17 @@ export const Home = () => {
 	// }, []);
 
 	return (
-		<div className={`h-screen flex flex-col justify-center items-center personal-bg-home`}>
+		<div className="h-screen flex flex-col justify-center items-center personal-bg-home">
 
 			{/* <img src={gliders[gliderIndex]} alt={`glider`} />
 				<img src={blinkers[blinkerIndex]} alt={`blinker`} /> */}
 			
-			<h1 className={`text-7xl mb-5`}>Game Of Life</h1>
+			<h1 className="text-7xl mb-5">Game Of Life</h1>
 
-			<div className={`flex space-x-7`}>
-				<Link to={`/signup`} className={`btn btn-outline`}>Sign-up</Link>
-				<Link to={`/signin`} className={`btn btn-outline`}>Sign-in</Link>
+			<div className="flex space-x-7">
+				<Link to="/signup" className="btn btn-outline">Sign-up</Link>
+				<Link to="/signin" className="btn btn-outline">Sign-in</Link>
+				<Link to="/pokeapi" className="btn btn-outline">PokéAPI</Link>
 			</div>
 		</div>
 	);

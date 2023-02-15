@@ -66,6 +66,32 @@ export const Labo = () => {
 					sec
 				</div>
 			</div>
+
+			<div className="p-8 bg-amber-300">
+				<div className="grid grid-cols-7 place-content-center gap-4">
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">1</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">2</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">3</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">4</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">5</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">6</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">7</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+					<div className="p-4 bg-cyan-400 rounded-md flex items-center justify-center">8</div>
+				</div>
+			</div>
 		</>
 	);
 };
