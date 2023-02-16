@@ -16,7 +16,7 @@ export const App = () => {
 				<Header counter={counter} />
 
 				<Grid grid={grid} setGrid={setGrid} />
-			</div>
+			</div>x
 
 			<div className={`right`}>
 				<Panel setGrid={setGrid} setCounter={setCounter} />

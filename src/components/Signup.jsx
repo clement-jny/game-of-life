@@ -100,7 +100,7 @@ export const Signup = () => {
 					</select>
 				</label>
 			</div>
-			
+
 			<div>
 				<meter id="passwordStrength" value="24" min="0" max="100" low="25" high="75" optimum="100"></meter>
 			</div>
