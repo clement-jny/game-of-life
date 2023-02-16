@@ -38,7 +38,6 @@ export const Home = () => {
 			<div className="flex space-x-7">
 				<Link to="/signup" className="btn btn-outline">Sign-up</Link>
 				<Link to="/signin" className="btn btn-outline">Sign-in</Link>
-				<Link to="/pokeapi" className="btn btn-outline">PokéAPI</Link>
 			</div>
 		</div>
 	);

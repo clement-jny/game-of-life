@@ -8,7 +8,6 @@ import { Signin } from "./components/Signin";
 import { App } from "./components/App";
 import { NotFound } from "./components/NotFound";
 import { Labo } from "./components/Labo";
-import { Pokeapi } from "./components/Pokeapi";
 
 import "../src/index.css";
 
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
 	{
 		path: "/signin",
 		element: <Signin />,
-	},
-	{
-		path: "/pokeapi",
-		element: <Pokeapi />,
 	},
 	{
 		path: "/app",
