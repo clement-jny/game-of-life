@@ -2,12 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Home } from "./components/Home";
-import { Signup } from "./components/Signup";
-import { Signin } from "./components/Signin";
-import { App } from "./components/App";
-import { NotFound } from "./components/NotFound";
-import { Labo } from "./components/Labo";
+import { Home } from "./components/home";
+import { Signup } from "./components/signup";
+import { Signin } from "./components/signin";
+import { Game } from "./components/game";
+import { Labo } from "./components/labo";
 
 import "../src/index.css";
 
@@ -15,7 +14,6 @@ const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Home />,
-		errorElement: <NotFound />,
 	},
 	{
 		path: "/signup",
@@ -26,8 +24,8 @@ const router = createBrowserRouter([
 		element: <Signin />,
 	},
 	{
-		path: "/app",
-		element: <App />,
+		path: "/game",
+		element: <Game />,
 	},
 	{
 		path: "/labo",

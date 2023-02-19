@@ -28,7 +28,7 @@ export const Home = () => {
 	// }, []);
 
 	return (
-		<div className="h-screen flex flex-col justify-center items-center personal-bg-home">
+		<div className="h-screen flex flex-col justify-center items-center personal-bg">
 
 			{/* <img src={gliders[gliderIndex]} alt={`glider`} />
 				<img src={blinkers[blinkerIndex]} alt={`blinker`} /> */}

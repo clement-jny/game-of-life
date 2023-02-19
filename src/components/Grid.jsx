@@ -6,7 +6,7 @@ export const Grid = ({ grid, setGrid }) => {
 					{line.map((cell, j) => (
 						<span
 							key={j}
-							className={`cell cell--${cell ? "alive" : "dead"}`}
+							className={`border inline-block h-6 aspect-square ${cell ? "bg-green-500" : "bg-red-500"}`}
 							// style={{
 							//     backgroundColor: cell ? colors.alive : colors.dead
 							// }}
