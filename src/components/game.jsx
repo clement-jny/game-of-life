@@ -132,6 +132,7 @@ class Board {
 export const Game = () => {
 	const [canvas, setCanvas] = useState(null);
 	const [board, setBoard] = useState(null);
+	const [gameInProgress, setGameInProgress] = useState(false);
 
 	//const [grid, setGrid] = useState(generateGrid(40));
 	const [counter, setCounter] = useState(0);
@@ -177,6 +178,8 @@ export const Game = () => {
 		let interval;
 
 		if (!stop) {
+			setGameInProgress(true);
+
 			interval = setInterval(() => {
 				//setGrid((prevGrid) => step(prevGrid));
 
@@ -184,6 +187,7 @@ export const Game = () => {
 				setCounter((prevCounter) => prevCounter + 1);
 			}, 150);
 		} else {
+			setGameInProgress(false);
 			//setGrid(generateGrid(20));
 			
 			const c = document.getElementById("canvas");
@@ -209,7 +213,7 @@ export const Game = () => {
 
 					<button className="btn btn-primary" onClick={() => toggleStop()}>{btnValue}</button>
 
-					<button className="btn" onClick={() => randomizeBoard(canvas)}>Random</button>
+					<button className={`btn ${gameInProgress ? "btn-disabled" : ""}`} onClick={() => randomizeBoard(canvas)}>Random</button>
 
 					<button className="btn btn-accent btn-disabled" onClick={() => { setGrid((previousGrid) => createClignotant(previousGrid)); }}>Blinker</button>
 
