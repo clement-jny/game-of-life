@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { generateGrid, step, createCanonPlanneur, createClignotant, CreatePlaneur } from "./Functions";
+// import { generateGrid, step, createCanonPlanneur, createClignotant, CreatePlaneur } from "./Functions";
 
-import { Grid } from "./grid";
+// import { Grid } from "./grid";
 
 class Cell {
-	static blockSize = 10;
+	static blockSize = 5;
 
 	constructor(context, posX, posY) {
 		this.context = context;
@@ -26,32 +26,43 @@ class Cell {
 }
 
 class Board {
-	static columns = 100; //canvas width / Cell.blockSize
-	static rows = 60; //canvas height / Cell.blockSize
-
-	constructor(canvas, width, height) {
+	constructor(canvas) {
 		this.canvas = canvas;
+		
+		this.canvas.width = this.canvas.parentElement.clientWidth - 20;
+		this.canvas.height = this.canvas.parentElement.clientHeight - 20;
 
-		this.canvas.width = width;
-		this.canvas.height = height;
+		this.columns = Math.round(this.canvas.width / Cell.blockSize);
+		this.rows = Math.round(this.canvas.height / Cell.blockSize);
 
-		//this.colums = width / Cell.blockSize;
-		//this.rows = height / Cell.blockSize;
+		// console.log("clientWidth : " + this.canvas.parentElement.clientWidth);
+		// console.log("clientHeight : " + this.canvas.parentElement.clientHeight);
+
+		// console.log("C : " + (this.canvas.parentElement.clientWidth - 20) / Cell.blockSize);
+		// console.log("R : " + (this.canvas.parentElement.clientHeight - 20) / Cell.blockSize);
+
+		// console.log("size : " + Cell.blockSize);
+
+		// console.log("static columns : " + this.columns);
+		// console.log("static rows : " + this.rows);
+		
 
 		this.context = this.canvas.getContext("2d");
 
+		//Store all the cells in a 1D array
 		this.gameObjects = [];
-
+		//Here board is created
 		this.createGrid();
 
 		// Request an animation frame for the first time
 		// The gameLoop() function will be called as a callback of this request
-		window.requestAnimationFrame(() => this.gameLoop());
+		//window.requestAnimationFrame(() => this.gameLoop());
+		this.gameLoop();
 	}
 
 	createGrid() {
-		for (let y = 0; y < Board.rows; y++) {
-			for (let x = 0; x < Board.columns; x++) {
+		for (let y = 0; y < this.rows; y++) {
+			for (let x = 0; x < this.columns; x++) {
 				this.gameObjects.push(new Cell(this.context, x, y));
 			}
 		}
@@ -59,7 +70,7 @@ class Board {
 
 	isAlive(x, y)
 	{
-		if (x < 0 || x >= Board.columns || y < 0 || y >= Board.rows){
+		if (x < 0 || x >= this.columns || y < 0 || y >= this.rows){
 			return false;
 		}
 
@@ -67,14 +78,14 @@ class Board {
 	}
 
 	gridToIndex(x, y){
-		return x + (y * Board.columns);
+		return x + (y * this.columns);
 	}
 
 	checkSurrounding ()
 	{
 		// Loop over all cells
-		for (let x = 0; x < Board.columns; x++) {
-			for (let y = 0; y < Board.rows; y++) {
+		for (let x = 0; x < this.columns; x++) {
+			for (let y = 0; y < this.rows; y++) {
 
 				// Count the nearby population
 				let numAlive = this.isAlive(x - 1, y - 1) + this.isAlive(x, y - 1) + this.isAlive(x + 1, y - 1) + this.isAlive(x - 1, y) + this.isAlive(x + 1, y) + this.isAlive(x - 1, y + 1) + this.isAlive(x, y + 1) + this.isAlive(x + 1, y + 1);
@@ -100,46 +111,57 @@ class Board {
 	}
 
 	gameLoop() {
-		// Check the surrounding of each cell
+		// Check the surrounding of each cell and update the next state
 		this.checkSurrounding();
 
-		// Clear the screen
+		// Clear the screen before drawing the new frame
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-		// Draw all the gameobjects
+		// Draw all the gameobjects in the gameobjects array
 		for (let i = 0; i < this.gameObjects.length; i++) {
 			this.gameObjects[i].draw();
 		}
 
 		// The loop function has reached it's end, keep requesting new frames
-		setTimeout( () => {
-			window.requestAnimationFrame(() => this.gameLoop());
-		}, 100)
+		// setTimeout( () => {
+			// 	window.requestAnimationFrame(() => this.gameLoop());
+		// }, 100);
 	}
 }
 
 export const Game = () => {
-	// useEffect(() => {
-	// 	window.onload = () => {
+	const [canvas, setCanvas] = useState(null);
+	const [board, setBoard] = useState(null);
+
+	//const [grid, setGrid] = useState(generateGrid(40));
+	const [counter, setCounter] = useState(0);
+
+	const [btnValue, setBtnValue] = useState("Start");
+	const [stop, setStop] = useState(true);
+
+
+	//Create a new random board
+	const randomizeBoard = (canvas) => {
+		setBoard(new Board(canvas));
+	}
+
+	useEffect(() => {
+		window.onload = () => {
 	// 		const local = window.localStorage;
 	// 		if (local.length === 0 || JSON.parse(local.getItem("user") === null)) {
 	// 			window.alert("You have to register first!");
 	// 			window.history.go("/");
 	// 			return;
 	// 		}
-	// 	}
-	// }, []);
 
+			//Load with a first board
+			const c = document.getElementById("canvas");
+			setCanvas(c);
+			randomizeBoard(c);
+		}
+	}, []);
 
-	//const [canvas, setCanvas] = useState(document.getElementById("canvas"));
-	//const [board, setBoard] = useState(new Board(canvas, 1000, 600));
-
-	const [grid, setGrid] = useState(generateGrid(40));
-	const [counter, setCounter] = useState(0);
-
-	const [btnValue, setBtnValue] = useState("Start");
-	const [stop, setStop] = useState(true);
-
+	//Toggle start/stop button
 	const toggleStop = () => {
 		if (stop) {
 			setStop(false);
@@ -150,59 +172,60 @@ export const Game = () => {
 		}
 	}
 
+	//Start/stop the game on each click
 	useEffect(() => {
 		let interval;
 
 		if (!stop) {
 			interval = setInterval(() => {
 				//setGrid((prevGrid) => step(prevGrid));
+
+				board.gameLoop();
 				setCounter((prevCounter) => prevCounter + 1);
-			}, 250);
+			}, 150);
 		} else {
 			//setGrid(generateGrid(20));
+			
+			const c = document.getElementById("canvas");
+			setCanvas(c);
+			randomizeBoard(c);
+
 			setCounter(0);
-			clearInterval(interval);
+			//clearInterval(interval);
 		}
 
 		return () => clearInterval(interval);
 	}, [stop])
 
-	useEffect(() => {
-		var canvas = document.getElementById("canvas");
-		new Board(canvas, canvas.parentElement.clientWidth, canvas.parentElement.clientHeight - 7);
-	}, []);
+
 
 	return (
 		<div className="h-screen personal-bg">
 			<div className="flex flex-col justify-center items-center border-b border-b-black h-[20%]">
-				<h1 className="text-5xl mb-3">{counter} generations</h1>
+				<h1 className="text-5xl mb-3">{counter} {counter > 1 ? "générations" : "génération"}</h1>
 
 				<div className="space-x-4">
 					<Link to="/" className="btn">Home</Link>
 
-					<button className="btn btn-primary" onClick={() => { toggleStop() }}>{btnValue}</button>
+					<button className="btn btn-primary" onClick={() => toggleStop()}>{btnValue}</button>
 
-					<button className="btn">Random</button>
+					<button className="btn" onClick={() => randomizeBoard(canvas)}>Random</button>
 
-					<button className="btn" onClick={() => { setGrid((previousGrid) => createClignotant(previousGrid)); }}>Blinker</button>
+					<button className="btn btn-accent btn-disabled" onClick={() => { setGrid((previousGrid) => createClignotant(previousGrid)); }}>Blinker</button>
 
-					<button className="btn" onClick={() => { setGrid((previousGrid) => CreatePlaneur(previousGrid)); }}>Glider</button>
+					<button className="btn btn-accent btn-disabled" onClick={() => board.createGlider(10, 10)}>Glider</button>
 
-					<button className="btn" onClick={() => { setGrid((previousGrid) => createCanonPlanneur(previousGrid)); }}>Canon glider</button>
+					<button className="btn btn-accent btn-disabled" onClick={() => { setGrid((previousGrid) => createCanonPlanneur(previousGrid)); }}>Canon glider</button>
 				</div>
 			</div>
 
 			<div className="bg-slate-300 h-[80%] flex justify-center items-center">
-				
-
 				<canvas id="canvas"></canvas>
 			</div>
 
 			{/* <div>
 				<Grid grid={grid} setGrid={setGrid} />
 			</div> */}
-
-			
 		</div>
 	);
 }

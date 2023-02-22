@@ -39,6 +39,10 @@ export const Home = () => {
 				<Link to="/signup" className="btn btn-outline">Sign-up</Link>
 				<Link to="/signin" className="btn btn-outline">Sign-in</Link>
 			</div>
+
+			<div className="flex space-x-7 mt-3">
+				<Link to="/game" className="btn btn-outline">Game</Link>
+			</div>
 		</div>
 	);
 };
